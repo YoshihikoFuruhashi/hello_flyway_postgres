@@ -1,0 +1,18 @@
+version: '3.4'
+
+
+services:
+  flyway:
+    image: flyway/flyway:6.0.1
+    volumes:
+      - ./sql:/flyway/sql
+      - ./conf:/flyway/conf
+  db:
+    image: postgres
+    environment:
+      POSTGRES_SERVER: db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: app
+    ports:
+      - 5433:5432
